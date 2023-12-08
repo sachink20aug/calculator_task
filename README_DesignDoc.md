@@ -71,7 +71,7 @@ A utility class for converting string representations of numbers to their numeri
 
 - C++ compiler (GCC or Clang) compatible with C++17 standards.
 - Standard C++ libraries.
-- cmake version `3.27.7` or higher.
+- cmake version `3.10.2` or higher.
 
 ### Compilation Instructions
 

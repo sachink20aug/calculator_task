@@ -8,7 +8,7 @@ This document outlines the design of a prototype post-processing system focused 
 
 ### Objectives
 
-- To evaluate arithmetic expressions involving basic operations (+, -, *, /, %) using floating-point data.
+- To evaluate any arithmetic expression involving basic operations (+, -, *, /, %) using floating-point data.
 - To allow dynamic expression input, facilitating a range of post-processing operations.
 - To create a scalable and extendable framework that can later incorporate image processing functionalities.
 
@@ -89,65 +89,66 @@ Usage: ./calculator_task <equation> <input x value> <input data type>
 Types: float or double
 ```
 
-### Runtime instructions
-```bash
-cd build
-./calculator_task "((x+1)*2-x%3)/x" 25.0 double
-valgrind --leak-check=full ./home/u_kolacs1/host/Downloads/systems_design/build/calculator_task "((x+1)*2-x%3)/x" 25.0 double
-```
 ### Testing
 ```bash
 cd build
 ctest --no-compress-output -T Test
 ```
 
+### Runtime instructions
+```bash
+cd build
+./calculator_task "((x+1)*2-x/3)/x" 25.0 double
+valgrind --leak-check=full ./home/u_kolacs1/host/Downloads/systems_design/build/calculator_task "((x+1)*2-x%3)/x" 25.0 double
+```
+
 ### Results
 * Run 1:
 ```bash
-./calculator_task "((x+1)*2-x%3)/x" 25.0 double
+./calculator_task "((x+1)*2-x/3)/x" 25.0 double
 You entered: 25.000000
-Expression: ((x+1)*2-x%3)/x
-Result: 2.040000
+Expression: ((x+1)*2-x/3)/x
+Result: 1.746667
 ```
 
 * Run 2:
 ```bash
-./calculator_task "((x+1)*2-x%3)/x" 25.0 float  
+./calculator_task "((x+1)*2-x/3)/x" 25.0 float 
 You entered: 25.000
-Expression: ((x+1)*2-x%3)/x
-Result: 2.040
+Expression: ((x+1)*2-x/3)/x
+Result: 1.747
 ```
 
 * Run 3:
 ```bash
-./calculator_task "((x+1)*2-x%3)/x" 5.468 float
+./calculator_task "((x+1)*2-x/3)/x" 5.468 float
 You entered: 5.468
-Expression: ((x+1)*2-x%3)/x
-Result: 1.914
+Expression: ((x+1)*2-x/3)/x
+Result: 2.032
 ```
 
 * Run 4:
 ```bash
-./calculator_task "((x+1)*2-x%3)/x" -10.2224 double
+./calculator_task "((x+1)*2-x/3)/x" -10.2224 double
 You entered: -10.222400
-Expression: ((x+1)*2-x%3)/x
-Result: 1.684771
+Expression: ((x+1)*2-x/3)/x
+Result: 1.471018
 ```
 
 * Run 5:
 ```bash
-./calculator_task "((x+1)*2-x%3))))))/x" 25.0 double
+./calculator_task "((x+1)*2-x/3))))))/x" 25.0 double
 You entered: 25.000000
-Expression: ((x+1)*2-x%3))))))/x
+Expression: ((x+1)*2-x/3))))))/x
 Result: Error evaluating expression: Invalid expression: Unmatched parentheses
 Error: Invalid expression: Unmatched parentheses
 ```
 
 * Run 6:
 ```bash
-./calculator_task "((x+1)*2-x%3)/x" -0 double
-You entered: -0.000000
-Expression: ((x+1)*2-x%3)/x
+./calculator_task "((x+1)*2-x/3)/x" 0 double
+You entered: 0.000000
+Expression: ((x+1)*2-x/3)/x
 Result: Error evaluating expression: Division by zero.
 Error: Division by zero.
 ```

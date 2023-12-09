@@ -71,7 +71,7 @@ A utility class for converting string representations of numbers to their numeri
 
 - C++ compiler (GCC or Clang) compatible with C++17 standards.
 - Standard C++ libraries.
-- cmake version `3.10.2` or higher.
+- cmake version `3.25.2` or higher.
 
 ### Compilation Instructions
 
@@ -85,21 +85,26 @@ cmake .. && make
 ```
 ### Runtime usage
 ```bash
-Usage: ./CalculatorApp <equation> <input x value> <input data type>
+Usage: ./calculator_task <equation> <input x value> <input data type>
 Types: float or double
 ```
 
 ### Runtime instructions
 ```bash
 cd build
-./CalculatorApp "((x+1)*2-x%3)/x" 25.0 double
-valgrind --leak-check=full ./home/u_kolacs1/host/Downloads/systems_design/build/CalculatorApp "((x+1)*2-x%3)/x" 25.0 double
+./calculator_task "((x+1)*2-x%3)/x" 25.0 double
+valgrind --leak-check=full ./home/u_kolacs1/host/Downloads/systems_design/build/calculator_task "((x+1)*2-x%3)/x" 25.0 double
+```
+### Testing
+```bash
+cd build
+ctest --no-compress-output -T Test
 ```
 
 ### Results
 * Run 1:
 ```bash
-./CalculatorApp "((x+1)*2-x%3)/x" 25.0 double
+./calculator_task "((x+1)*2-x%3)/x" 25.0 double
 You entered: 25.000000
 Expression: ((x+1)*2-x%3)/x
 Result: 2.040000
@@ -107,7 +112,7 @@ Result: 2.040000
 
 * Run 2:
 ```bash
-./CalculatorApp "((x+1)*2-x%3)/x" 25.0 float  
+./calculator_task "((x+1)*2-x%3)/x" 25.0 float  
 You entered: 25.000
 Expression: ((x+1)*2-x%3)/x
 Result: 2.040
@@ -115,7 +120,7 @@ Result: 2.040
 
 * Run 3:
 ```bash
-./CalculatorApp "((x+1)*2-x%3)/x" 5.468 float
+./calculator_task "((x+1)*2-x%3)/x" 5.468 float
 You entered: 5.468
 Expression: ((x+1)*2-x%3)/x
 Result: 1.914
@@ -123,7 +128,7 @@ Result: 1.914
 
 * Run 4:
 ```bash
-./CalculatorApp "((x+1)*2-x%3)/x" -10.2224 double
+./calculator_task "((x+1)*2-x%3)/x" -10.2224 double
 You entered: -10.222400
 Expression: ((x+1)*2-x%3)/x
 Result: 1.684771
@@ -131,7 +136,7 @@ Result: 1.684771
 
 * Run 5:
 ```bash
-./CalculatorApp "((x+1)*2-x%3))))))/x" 25.0 double
+./calculator_task "((x+1)*2-x%3))))))/x" 25.0 double
 You entered: 25.000000
 Expression: ((x+1)*2-x%3))))))/x
 Result: Error evaluating expression: Invalid expression: Unmatched parentheses
@@ -140,7 +145,7 @@ Error: Invalid expression: Unmatched parentheses
 
 * Run 6:
 ```bash
-./CalculatorApp "((x+1)*2-x%3)/x" -0 double
+./calculator_task "((x+1)*2-x%3)/x" -0 double
 You entered: -0.000000
 Expression: ((x+1)*2-x%3)/x
 Result: Error evaluating expression: Division by zero.

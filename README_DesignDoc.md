@@ -95,6 +95,11 @@ cd build
 ./CalculatorApp "((x+1)*2-x%3)/x" 25.0 double
 valgrind --leak-check=full ./home/u_kolacs1/host/Downloads/systems_design/build/CalculatorApp "((x+1)*2-x%3)/x" 25.0 double
 ```
+### Testing
+```bash
+cd build
+ctest --no-compress-output -T Test
+```
 
 ### Results
 * Run 1:

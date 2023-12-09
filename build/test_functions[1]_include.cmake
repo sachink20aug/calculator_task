@@ -1,0 +1,5 @@
+if(EXISTS "/home/u_kolacs1/host/Downloads/calculator_task/build/test_functions[1]_tests.cmake")
+  include("/home/u_kolacs1/host/Downloads/calculator_task/build/test_functions[1]_tests.cmake")
+else()
+  add_test(test_functions_NOT_BUILT test_functions_NOT_BUILT)
+endif()
